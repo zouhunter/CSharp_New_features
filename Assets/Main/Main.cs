@@ -54,10 +54,11 @@ public class Main : MonoBehaviour
         {
             holder.Switch(baseNames[currentIndex]);
             m_title.text = baseNames[currentIndex];
+            m_log.text = "";
         }
     }
-    private void Log(string info)
+    private void Log(object info)
     {
-        m_log.text = info;
+        m_log.text += info.ToString() + "\n";
     }
 }

@@ -6,5 +6,5 @@ using UnityEngine.Events;
 public interface ISample {
     string titleName { get; }
     void Execute();
-    UnityAction<string> onLog { get; set; }
+    UnityAction<object> Log { get; set; }
 }

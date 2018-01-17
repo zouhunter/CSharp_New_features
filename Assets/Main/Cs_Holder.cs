@@ -8,7 +8,7 @@ public class Cs_Holder : MonoBehaviour
 {
     [SerializeField]
     private Button prefab;
-    internal Action<string> onLog { get; set; }
+    internal Action<object> onLog { get; set; }
     private Dictionary<string, List<ISample>> sampleDic = new Dictionary<string, List<ISample>>();
     private List<Button> created = new List<Button>();
 
@@ -46,7 +46,7 @@ public class Cs_Holder : MonoBehaviour
         {
             if(typeof(ISample).IsAssignableFrom(type) && type.Name.StartsWith(baseName)){
                 var item = System.Activator.CreateInstance(type) as ISample;
-                item.onLog = Log;
+                item.Log = Log;
                 samples.Add(item);
             }
         }
@@ -61,7 +61,7 @@ public class Cs_Holder : MonoBehaviour
         created.Clear();
     }
 
-    protected void Log(string info)
+    protected void Log(object info)
     {
         if(onLog != null)
         {
