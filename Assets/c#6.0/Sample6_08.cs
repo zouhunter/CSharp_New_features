@@ -19,23 +19,19 @@ public class Sample6_08 : ISample
     {
         try
         {
-            throw new ArgumentException("Age");
+            Log("Age");
         }
         catch (ArgumentException argumentException) when (argumentException.Message.Equals("Name"))
         {
-            throw new ArgumentException("Name Exception");
-
+            Log("Name Exception");
         }
-
         catch (ArgumentException argumentException) when (argumentException.Message.Equals("Age"))
         {
-            throw new Exception("not handle");
-
+            Log("not handle");
         }
         catch (Exception e)
         {
-
-            throw e;
+            Log(e);
         }
     }
 }

@@ -62,6 +62,6 @@ public class Main : MonoBehaviour
     }
     private void Log(object info)
     {
-        m_log.text += info.ToString() + "\n";
+        m_log.text += info?.ToString() + "\n";
     }
 }
