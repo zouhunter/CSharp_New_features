@@ -11,7 +11,7 @@ public class Sample4_01 : ISample
     {
         get
         {
-            return "dynamic";
+            return "dynamic 01";
         }
     }
 

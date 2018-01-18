@@ -19,7 +19,8 @@ public class Cs_Holder : MonoBehaviour
         if (!sampleDic.ContainsKey(baseName))
         {
             var samples = LoadSamples(baseName);
-            if(samples != null){
+            if (samples != null)
+            {
                 sampleDic[baseName] = samples;
             }
         }
@@ -31,7 +32,7 @@ public class Cs_Holder : MonoBehaviour
         foreach (var item in samples)
         {
             var obj = Instantiate(prefab);
-            obj.gameObject.transform.SetParent(transform,false);
+            obj.gameObject.transform.SetParent(transform, false);
             obj.GetComponentInChildren<Text>().text = item.titleName;
             obj.onClick.AddListener(item.Execute);
             created.Add(obj);
@@ -40,22 +41,33 @@ public class Cs_Holder : MonoBehaviour
 
     private List<ISample> LoadSamples(string baseName)
     {
-        var types = this.GetType().Assembly.GetTypes();
-        var samples = new List<ISample>();
-        foreach (var type in types)
+        var list = new List<ISample>();
+        if (baseName == "c#4.0")
         {
-            if(typeof(ISample).IsAssignableFrom(type) && type.Name.StartsWith(baseName)){
-                var item = System.Activator.CreateInstance(type) as ISample;
-                item.Log = Log;
-                samples.Add(item);
-            }
+            InitSample<Sample4_01>(list);
+            InitSample<Sample4_02>(list);
         }
-        return samples;
+        else if (baseName == "c#5.0")
+        {
+            InitSample<Sample5_01>(list);
+        }
+        else if (baseName == "c#6.0")
+        {
+
+        }
+        return list;
+    }
+    private void InitSample<T>(List<ISample> list) where T : ISample, new()
+    {
+        var sample = new T();
+        sample.Log = Log;
+        list.Add(sample);
     }
 
     private void CleanCreated()
     {
-        foreach (var item in created){
+        foreach (var item in created)
+        {
             Destroy(item.gameObject);
         }
         created.Clear();
@@ -63,7 +75,7 @@ public class Cs_Holder : MonoBehaviour
 
     protected void Log(object info)
     {
-        if(onLog != null)
+        if (onLog != null)
         {
             onLog.Invoke(info);
         }

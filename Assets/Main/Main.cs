@@ -8,8 +8,11 @@ public class Main : MonoBehaviour
 {
     [SerializeField]
     private Text m_title;
-    [SerializeField]
-    private string[] baseNames;
+    private string[] baseNames = new string[] {
+        "c#4.0",
+        "c#5.0",
+        "c#6.0",
+    };
     [SerializeField]
     private Cs_Holder holder;
     [SerializeField]
