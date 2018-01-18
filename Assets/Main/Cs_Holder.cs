@@ -53,6 +53,16 @@ public class Cs_Holder : MonoBehaviour
         }
         else if (baseName == "c#6.0")
         {
+            InitSample<Sample6_01>(list);
+            InitSample<Sample6_02>(list);
+            InitSample<Sample6_03>(list);
+            InitSample<Sample6_04>(list);
+            InitSample<Sample6_05>(list);
+            InitSample<Sample6_06>(list);
+            InitSample<Sample6_07>(list);
+            InitSample<Sample6_08>(list);
+            InitSample<Sample6_09>(list);
+            InitSample<Sample6_10>(list);
 
         }
         return list;
